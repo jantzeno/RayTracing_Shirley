@@ -1,3 +1,0 @@
-javac .\ppm.java
-jar cfe .\ppm.jar ppm .\ppm.class
-java -jar .\ppm.jar
