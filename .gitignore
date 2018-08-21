@@ -27,7 +27,3 @@
 # Java
 *.jar
 *.class
-
-# Directories
-nimcache
-bin

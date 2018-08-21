@@ -16,4 +16,3 @@ all: c++ d nim java
 
 clean:
 	rm -fv ./bin/*
-	rm -rfv ./Nim/nimcache
