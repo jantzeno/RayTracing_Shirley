@@ -15,4 +15,4 @@ java:
 all: c++ d nim java
 
 clean:
-	rm -fv ./bin/*
+	rm -rfv ./bin/*
