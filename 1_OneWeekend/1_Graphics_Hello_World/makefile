@@ -1,18 +1,18 @@
-c++:
-	g++ -std=c++11 ./C++/ppm.cpp -o ./bin/cppm
+cpp_ppm:
+	g++ -std=c++11 ./cpp/ppm.cpp -o ./bin/cppm
 
-d:
-	dmd ./D/ppm.d -of=./bin/dppm
+d_ppm:
+	dmd ./d/ppm.d -of=./bin/dppm
 
-nim:
-	nim cpp -o:./bin/nimppm --nimcache=./bin/nimcache ./Nim/ppm.nim
+nim_ppm:
+	nim cpp -o:./bin/nimppm --nimcache=./bin/nimcache ./nim/ppm.nim
 
-java:
-	javac -d ./bin ./Java/ppm.java
+java_ppm:
+	javac -d ./bin ./java/ppm.java
 	jar -c -e ppm -f ./bin/ppm.jar ./bin/ppm.class
 	#java ppm ppm.jar
 
-all: c++ d nim java
+all:	cpp_ppm	d_ppm	nim_ppm	java_ppm
 
 clean:
 	rm -rfv ./bin/*
