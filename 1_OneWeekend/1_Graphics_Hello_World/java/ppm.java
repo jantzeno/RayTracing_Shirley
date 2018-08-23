@@ -17,21 +17,23 @@ class ppm {
             for (String rgb : pixels) {
                 printWriter.print(rgb);
             }
-        } 
+        }
+    }
+
+    public void generateHeader(int x, int y) {
+      header = new StringBuilder()
+          .append("P3\n")
+          .append(String.valueOf(x))
+          .append(" ")
+          .append(String.valueOf(y))
+          .append("\n255\n")
+          .toString();
     }
 
     public void generatePixels(int x, int y) {
         int nx = x;
         int ny = y;
         pixels = new ArrayList<>(nx*ny);
-
-        header = new StringBuilder()
-            .append("P3\n")
-            .append(String.valueOf(nx))
-            .append(" ")
-            .append(String.valueOf(ny))
-            .append("\n255\n")
-            .toString();
 
         for (int j = ny-1; j >= 0; j--) {
             for (int i = 0; i < nx; i++) {
@@ -50,15 +52,18 @@ class ppm {
                     .append(String.valueOf(ib))
                     .append("\n")
                     .toString();
-                    
+
                 pixels.add(rgb);
             }
         }
     }
 
     public static void main(String[] args) {
+        int x = 200;
+        int y = 100;
         ppm image = new ppm();
-        image.generatePixels(200, 100);
+        image.generateHeader(x, y);
+        image.generatePixels(x, y);
         try {
             image.writeImage("javaimage.ppm");
         } catch (IOException e) {
