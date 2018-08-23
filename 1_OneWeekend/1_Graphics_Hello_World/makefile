@@ -9,10 +9,13 @@ nim_ppm:
 
 java_ppm:
 	javac -d bin java/ppm.java
-	jar -c -e ppm -f bin/ppm.jar bin/ppm.class
+	jar -c -e ppm -f bin/java_ppm.jar bin/ppm.class
 	#java ppm ppm.jar
 
-all:	cpp_ppm	d_ppm	nim_ppm	java_ppm
+kotlin_ppm:
+	kotlinc kotlin/ppm.kt -include-runtime -d bin/kotlin_ppm.jar
+
+all:	cpp_ppm	d_ppm	nim_ppm	java_ppm kotlin_ppm
 
 clean_linux:
 	rm -rfv bin/*
