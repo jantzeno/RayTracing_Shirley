@@ -1,4 +1,3 @@
-
 import java.io.File
 
 fun generateHeader(x: Int, y: Int): String {

@@ -9,7 +9,7 @@ nim_ppm:
 
 java_ppm:
 	javac -d bin java/ppm.java
-	jar -c -e ppm -f bin/java_ppm.jar bin/ppm.class
+	jar -cfe bin/java_ppm.jar ppm bin/ppm.class
 	#java ppm ppm.jar
 
 kotlin_ppm:
