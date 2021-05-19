@@ -15,24 +15,22 @@ bool outputFile (string fileName, string header, string[] pixels) {
     return false;
 }
 
-string generateHeader(int x, int y) {
-  string header = "P3\n" ~ to!string(x) ~ " " ~ to!string(y) ~ "\n255\n";
+string generateHeader(int width, int height) {
+  string header = "P3\n" ~ to!string(width) ~ " " ~ to!string(height) ~ "\n255\n";
   return header;
 }
 
-string[] generatePixels(int x, int y) {
-  int nx = x;
-  int ny = y;
+string[] generatePixels(int width, int height) {
   string[] pixels;
   string rgb;
-  for (int j = ny-1; j >= 0; j--) {
-    foreach (i; 0..nx) {
-      float r = float(i) / float(nx);
-      float g = float(j) / float(ny);
-      float b = 0.2;
-      int ir = to!int(255.99*r);
-      int ig = to!int(255.99*g);
-      int ib = to!int(255.99*b);
+  for (int j = height-1; j >= 0; j--) {
+    foreach (i; 0..width) {
+      float r = float(i) / float(width-1);
+      float g = float(j) / float(height-1);
+      float b = 0.25;
+      int ir = to!int(255.999*r);
+      int ig = to!int(255.999*g);
+      int ib = to!int(255.999*b);
       rgb = to!string(ir) ~ " " ~ to!string(ig) ~ " " ~ to!string(ib);
       pixels ~= rgb;
     }
@@ -41,9 +39,9 @@ string[] generatePixels(int x, int y) {
 }
 
 void main() {
-  int x = 200;
-  int y = 100;
-  string header = generateHeader(x, y);
-  string[] pixels = generatePixels(x, y);
+  const int width = 256;
+  const int height = 256;
+  string header = generateHeader(width, height);
+  string[] pixels = generatePixels(width, height);
   outputFile("dimage.ppm", header, pixels);
 }

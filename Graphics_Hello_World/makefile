@@ -12,9 +12,6 @@ java_ppm:
 	jar -cfe bin/java_ppm.jar ppm bin/ppm.class
 	#java ppm ppm.jar
 
-kotlin_ppm:
-	kotlinc kotlin/ppm.kt -include-runtime -d bin/kotlin_ppm.jar
-
 all:	cpp_ppm	d_ppm	nim_ppm	java_ppm kotlin_ppm
 
 clean_linux:

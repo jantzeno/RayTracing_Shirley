@@ -20,25 +20,23 @@ bool outputFile(std::string const &fileName,
     return false;
   }
 
-std::string generateHeader(int x, int y) {
-  std::string header = "P3\n" + std::to_string(x) + " " + std::to_string(y) + "\n255\n";
+std::string generateHeader(int width, int height) {
+  std::string header = "P3\n" + std::to_string(width) + " " + std::to_string(height) + "\n255\n";
   return header;
 }
 
-std::vector<std::string> generatePixels(int x, int y) {
-  int nx = x;
-  int ny = y;
+std::vector<std::string> generatePixels(int width, int height) {
   std::vector<std::string> pixels;
-  pixels.reserve(nx * ny);
+  pixels.reserve(width * height);
   std::string rgb;
-  for (int j = ny-1; j >= 0; j--) {
-    for (int i = 0; i < nx; i++) {
-      float r = float(i) / float(nx);
-      float g = float(j) / float(ny);
-      float b = 0.2;
-      int ir = int(255.99 * r);
-      int ig = int(255.99 * g);
-      int ib = int(255.99 * b);
+  for (int j = height-1; j >= 0; j--) {
+    for (int i = 0; i < width; i++) {
+      float r = float(i) / float(width-1);
+      float g = float(j) / float(height-1);
+      float b = 0.25;
+      int ir = int(255.999 * r);
+      int ig = int(255.999 * g);
+      int ib = int(255.999 * b);
       rgb = std::to_string(ir) + " " + std::to_string(ig) + " " + std::to_string(ib) + "\n";
       pixels.emplace_back(rgb);
     }
@@ -47,9 +45,9 @@ std::vector<std::string> generatePixels(int x, int y) {
 }
 
 int main() {
-  int x = 200;
-  int y = 100;
-  auto header = generateHeader(x, y);
-  auto pixels = generatePixels(x, y);
+  int width = 256;
+  int height = 256;
+  auto header = generateHeader(width, height);
+  auto pixels = generatePixels(width, height);
   outputFile("cppimage.ppm", header, pixels);
 }
